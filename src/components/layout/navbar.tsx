@@ -48,7 +48,7 @@ export function Navbar() {
           </nav>
           <div className="flex items-center gap-1 sm:gap-3">
             <button type="button" onClick={() => setSearchOpen(true)} className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-sm text-foreground transition-colors hover:bg-white/10" aria-label="Open search"><Search size={20} strokeWidth={1.8} /></button>
-            <Link href="/favorites" className="relative hidden min-h-11 min-w-11 items-center justify-center rounded-sm text-foreground transition-colors hover:bg-white/10 sm:inline-flex" aria-label={hydrated ? `Your Vault, ${favoritesCount} saved films` : "Your Vault"}>
+            <Link href="/favorites" className="relative hidden min-h-11 min-w-11 items-center justify-center rounded-sm text-foreground transition-colors hover:bg-white/10 sm:inline-flex" aria-label={hydrated ? `Your Vault, ${favoritesCount} saved ${favoritesCount === 1 ? "film" : "films"}` : "Your Vault"}>
               <Heart size={20} strokeWidth={1.8} />
               {hydrated && favoritesCount > 0 && <span className="absolute -right-1 -top-0.5 flex h-[17px] min-w-[17px] items-center justify-center rounded-full bg-burgundy px-1 text-[9px] font-bold text-white">{favoritesCount > 99 ? "99+" : favoritesCount}</span>}
             </Link>

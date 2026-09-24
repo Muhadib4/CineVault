@@ -9,7 +9,6 @@ const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "sw
 const dmSerif = DM_Serif_Display({ subsets: ["latin"], weight: "400", variable: "--font-dm-serif", display: "swap" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://cinevault.vercel.app"),
   title: { default: "CineVault — Discover Your Next Movie", template: "%s | CineVault" },
   description: "Explore cinema worth watching. Discover films, watch trailers, and keep your favorites in one place.",
   openGraph: {
@@ -23,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geist.variable} ${dmSerif.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${geist.variable} ${dmSerif.variable}`}>
       <body>
         <FavoritesHydrator />
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:bg-foreground focus:px-4 focus:py-2 focus:text-background">Skip to content</a>

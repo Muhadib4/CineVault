@@ -22,7 +22,7 @@ export function MovieCard({ movie, className, priority = false }: MovieCardProps
       <div className="relative aspect-[2/3] overflow-hidden rounded-[3px] bg-surface-raised shadow-[0_20px_45px_rgba(0,0,0,.2)]">
         <Link href={`/movie/${movie.id}`} className="absolute inset-0 block focus-visible:z-20" aria-label={`View details for ${title}`}>
           {poster ? (
-            <Image src={poster} alt={`${title} theatrical poster`} fill sizes="(max-width: 640px) 44vw, (max-width: 1024px) 28vw, 190px" quality={78} priority={priority} className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.035]" />
+            <Image src={poster} alt={`${title} theatrical poster`} fill sizes="(max-width: 640px) 44vw, (max-width: 1024px) 28vw, 190px" quality={78} preload={priority} className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.035]" />
           ) : (
             <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-[radial-gradient(circle_at_50%_15%,#352029,#171514_70%)] px-4 text-center text-muted">
               <Film size={28} strokeWidth={1.2} aria-hidden="true" />

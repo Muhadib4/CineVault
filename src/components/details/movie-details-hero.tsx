@@ -37,7 +37,7 @@ export function MovieDetailsHero({ movie }: Props) {
               src={backdrop}
               alt=""
               fill
-              priority
+              preload
               sizes="100vw"
               className={styles.backdropImage}
             />
@@ -58,7 +58,7 @@ export function MovieDetailsHero({ movie }: Props) {
                   src={poster}
                   alt={`${movie.title} theatrical poster`}
                   fill
-                  priority
+                  loading="eager"
                   sizes="(max-width: 640px) 44vw, (max-width: 1024px) 30vw, 280px"
                   className={styles.posterImage}
                 />

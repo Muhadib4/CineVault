@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CastRail } from "@/components/details/cast-rail";
 import { MovieDetailsHero } from "@/components/details/movie-details-hero";
@@ -20,8 +21,6 @@ function isMissingMovie(error: unknown): boolean {
 }
 
 async function loadMovie(id: string): Promise<MovieDetails> {
-  if (!/^\d+$/.test(id) || Number(id) <= 0) notFound();
-
   try {
     return await getMovieDetails(id);
   } catch (error) {
@@ -61,6 +60,15 @@ export async function generateMetadata({ params }: MoviePageProps): Promise<Meta
 
 export default async function MoviePage({ params }: MoviePageProps) {
   const { id } = await params;
+  if (!/^\d+$/.test(id) || Number(id) <= 0) notFound();
+  if (!process.env.TMDB_ACCESS_TOKEN?.trim()) {
+    return <main className="page-shell flex min-h-[75vh] flex-col justify-center pt-28">
+      <p className="eyebrow">CineVault</p>
+      <h1 className="font-display mt-3 text-5xl sm:text-7xl">Movie data is unavailable.</h1>
+      <p className="mt-5 max-w-xl text-muted">Add TMDB_ACCESS_TOKEN to .env.local and restart the server to view film details.</p>
+      <Link href="/" className="button-secondary mt-8 w-fit">Back to Home</Link>
+    </main>;
+  }
   const movie = await loadMovie(id);
   const cast = movie.credits?.cast?.slice(0, 12) ?? [];
   const recommendations = (movie.recommendations?.results ?? [])

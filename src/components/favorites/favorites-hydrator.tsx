@@ -5,9 +5,13 @@ import { useFavoritesStore } from "@/stores/favorites-store";
 
 export function FavoritesHydrator() {
   useEffect(() => {
-    void useFavoritesStore.persist.rehydrate().finally(() => {
+    try {
+      void Promise.resolve(useFavoritesStore.persist.rehydrate())
+        .catch(() => undefined)
+        .finally(() => useFavoritesStore.getState().setHydrated(true));
+    } catch {
       useFavoritesStore.getState().setHydrated(true);
-    });
+    }
   }, []);
   return null;
 }

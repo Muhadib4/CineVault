@@ -47,7 +47,7 @@ export function TrailerDialog({ trailer, title }: Props) {
         <div className={styles.dialogContents}>
           <div className={styles.dialogHeader}>
             <div>
-              <span className={styles.dialogEyebrow}>Official trailer</span>
+              <span className={styles.dialogEyebrow}>{trailer.official ? "Official trailer" : "Trailer"}</span>
               <h2>{title}</h2>
             </div>
             <button className={styles.closeButton} type="button" onClick={closeDialog} aria-label="Close trailer">
